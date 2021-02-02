@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<robot
+  name="xiaoqiang">
+   <link
+    name="laserbase_link">
+    <inertial>
+      <origin
+        xyz="-0.1098 -0.0015527 0.0081894"
+        rpy="0 0 0" />
+      <mass
+        value="4.3093" />
+      <inertia
+        ixx="0.024068"
+        ixy="0.00014219"
+        ixz="-0.0052989"
+        iyy="0.052449"
+        iyz="-1.328E-05"
+        izz="0.070783" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.01 .01 .01"/>
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.098039 0.098039 0.098039 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.01 .01 .01"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="base_footprint"/>
+
+  <joint name="base_link_joint" type="fixed">
+    <parent link="base_footprint" />
+    <child link="laserbase_link" />
+    <origin xyz="0 0 0.15" />
+  </joint>
+ 
+  <link name="rslidar">
+    <visual>
+      <origin xyz="0 0 0" />
+      <geometry>
+        <cylinder length="0.05" radius="0.05" />
+      </geometry>
+      <material name="gray" />
+    </visual>
+  </link>
+  <joint name="horizontal_laser_link_joint" type="fixed">
+    <parent link="laserbase_link" />
+    <child link="rslidar" />
+    <origin xyz="-0.25 0 0.4" rpy="0 0 0" />
+  </joint>
+
+  <link name="imu">
+    <visual>
+      <origin xyz="0 0 0" />
+      <geometry>
+        <cylinder length="0.01" radius="0.01" />
+      </geometry>
+      <material name="gray" />
+    </visual>
+  </link>
+  <joint name="imu_link_joint" type="fixed">
+    <parent link="laserbase_link" />
+    <child link="imu" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+</robot>

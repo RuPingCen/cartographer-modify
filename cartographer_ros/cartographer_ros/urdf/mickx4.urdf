@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<robot   name="mickx4">
+   
+  <link name="base_footprint">
+      
+ </link>
+
+  <link name="base_link">
+     <visual>
+      <geometry>
+        <box size="0.01 .01 .01"/>
+      </geometry>
+      <material name="gree">
+        <color rgba="0 0 .8 1"/>
+      </material>
+    </visual>
+    <origin rpy="0 0 0" xyz="1 0 0.125"/>
+ </link>
+ <joint name="base_link_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0.0 0.0 0.01"/>
+  </joint>
+ 
+  <link name="imu_link">
+     <visual>
+      <geometry>
+	 <box size=".05 .02 .02"/>
+      </geometry>
+      <material name="">
+        <color rgba="0 1 0 1" />
+      </material>
+    </visual>
+  </link>
+
+  <joint name="imu_link_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0.05 0.0 0.75"/>
+  </joint>
+
+  <link name="rslidar">
+     <visual>
+      <geometry>
+          <!--mesh filename="package://mick_description/urdf/mesh/RS-LiDAR-16.stl" scale="0.001 0.001 0.001">
+          </mesh-->
+         <cylinder length=".0826" radius="0.0487"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+  </link>
+
+  <joint name="horizontal_laser_link_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="rslidar"/>
+    <origin xyz="0.0 0.0 0.80" rpy="0 0 0"/>
+  </joint>
+</robot>
