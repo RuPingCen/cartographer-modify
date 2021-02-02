@@ -1,0 +1,35 @@
+roslaunch cartographer_ros demo_backpack_2d.launch bag_filename:=/media/crp/0E3C06880E3C0688/b2-2016-04-05-14-44-52.bag
+
+
+source devel_isolated/setup.bash
+rosservice call /write_state ~/2d_local.pbstream
+
+
+
+
+启动定位节点
+其中2d_local.pbstream 是我们上一个步骤中生成的一个地图文件，bag_filename:表示的是当前输入的激光雷达的数据 
+
+roslaunch cartographer_ros demo_backpack_2d_localization.launch load_state_filename:=/home/crp/2d_local.pbstream bag_filename:=/media/crp/0E3C06880E3C0688/b2-2016-04-27-12-31-41.bag
+
+
+
+
+3D 激光见图
+启动3D激光雷达建图
+roslaunch cartographer_ros demo_backpack_3d.launch bag_filename:=/media/crp/0E3C06880E3C0688/b3-2016-04-05-13-54-42.bag
+
+rosservice call /write_state ~/3d_local.pbstream
+
+3D定位
+cartographer_ros demo_backpack_3d_localization.launch load_state_filename:=/home/crp/3d_local.pbstream bag_filename:=/media/crp/0E3C06880E3C0688/b3-2016-04-05-15-52-20.bag 
+
+
+
+小强平台录制的激光雷达数据
+http://community.bwbot.org/topic/523/%E8%B0%B7%E6%AD%8Ccartographer%E4%BD%BF%E7%94%A8%E9%80%9F%E8%85%BE%E8%81%9A%E5%88%9B3d%E6%BF%80%E5%85%89%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E4%B8%89%E7%BB%B4%E5%BB%BA%E5%9B%BE 
+
+
+
+
+
